@@ -12,6 +12,8 @@ impl Provider {
     pub fn from(name: &str) -> Self {
         match name {
             "swww" => Self::SWWW,
+            "hsetroot" => Self::HSETROOT,
+            "feh" => Self::FEH,
             custom => Self::Unknown(custom.to_string()),
         }
     }
