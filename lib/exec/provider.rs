@@ -15,6 +15,9 @@ impl Provider {
             custom => Self::Unknown(custom.to_string()),
         }
     }
+    /// create cmd to run with provider
+    ///
+    /// cmd that is returned requires path to wallpaper at the end
     pub fn to_string(&self) -> String {
         match self {
             Self::SWWW => "swww img -t outer --transition-step 250 --transition-fps 60",
@@ -25,6 +28,7 @@ impl Provider {
     }
 }
 
+/// create cmd to set wallpaper
 pub fn get_provider_cmd() -> Result<String> {
     let cfg = Config::new()?;
     let provider = Provider::from(&cfg.main.provider);
