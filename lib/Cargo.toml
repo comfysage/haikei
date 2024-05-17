@@ -1,0 +1,15 @@
+[package]
+name = "haikei-lib"
+version = "0.1.0"
+
+[lib]
+path = "lib.rs"
+
+[dependencies]
+log = "0.4"
+lazy_static = "1.4.0"
+regex = "1.9.6"
+serde = { version = "1.0", features = ["derive"] }
+toml = "0.8.2"
+nom = "7.1.3"
+directories = "5.0.1"

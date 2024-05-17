@@ -1,0 +1,19 @@
+workspace = { members = [ "lib" ] }
+
+[package]
+name = "haikei"
+version = "0.1.0"
+edition = "2021"
+readme = "README.md"
+repository = "https://github.com/comfysage/haikei"
+license = "MIT OR Apache-2.0"
+
+[[bin]]
+name = "haikei"
+path = "src/main.rs"
+
+[dependencies]
+haikei-lib = { path = "./lib" }
+clap = "4.4.18"
+pretty_env_logger = "0.5.0"
+rand = "0.8.5"
