@@ -5,14 +5,14 @@ on:
     branches:
       - mega
     paths:
-      - src
-      - lib
+      - 'src/**'
+      - 'lib/**'
   pull_request:
     branches:
       - mega
     paths:
-      - src
-      - lib
+      - 'src/**'
+      - 'lib/**'
 
 env:
   CARGO_TERM_COLOR: always
