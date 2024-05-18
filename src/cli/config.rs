@@ -1,5 +1,5 @@
 use haikei_lib::prelude::*;
-use haikei_lib::util::{msg, filepath};
+use haikei_lib::util::filepath;
 use haikei_lib::config::Config;
 use haikei_lib::data;
 
@@ -11,7 +11,7 @@ pub fn create() -> Result<()> {
             "config file {config_path} already exists."
         ));
     }
-    msg::create_config(&config_path);
+    info!("creating config at {config_path}");
     data::save_config(Config::default())?;
 
     Ok(())
