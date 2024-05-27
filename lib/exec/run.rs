@@ -39,6 +39,7 @@ where
 pub fn run(cmd: Vec<String>, pwd: &str) -> Result<()> {
     let mut cwd: String = pwd.to_string();
     for c in cmd {
+        trace!("$ {c}");
         let line = c.clone();
         let elements = line.splitn(2, ' ');
         let el: Vec<&str> = elements.collect();
