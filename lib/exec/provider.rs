@@ -34,5 +34,7 @@ impl Provider {
 pub fn get_provider_cmd() -> Result<String> {
     let cfg = Config::new()?;
     let provider = Provider::from(&cfg.main.provider);
-    Ok(provider.to_string())
+    let cmd = provider.to_string();
+    debug!("provider: {cmd}");
+    Ok(cmd)
 }
