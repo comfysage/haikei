@@ -5,6 +5,7 @@ use haikei_lib::data;
 
 pub fn create() -> Result<()> {
     let config_path = Config::path()?;
+    debug!("create config: {config_path}");
     if filepath::exists(&config_path) {
         return Err(make_err!(
             Conflict,
