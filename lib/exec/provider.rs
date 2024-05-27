@@ -22,7 +22,7 @@ impl Provider {
     /// cmd that is returned requires path to wallpaper at the end
     pub fn to_string(&self) -> String {
         match self {
-            Self::SWWW => "swww img -t outer --transition-step 250 --transition-fps 60",
+            Self::SWWW => "swww img -t fade --transition-step 250 --transition-fps 60",
             Self::HSETROOT => "hsetroot -cover",
             Self::FEH => "feh --bg-fill",
             Self::Unknown(custom) => custom,
