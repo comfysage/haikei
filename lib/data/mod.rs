@@ -11,6 +11,8 @@ use std::path::PathBuf;
 pub fn save_config(config: Config) -> Result<()> {
     let str = config.to_string()?;
     let path = Config::path()?;
+    let path_as_buf = PathBuf::from(path.clone());
+    std::fs::create_dir_all(path_as_buf.parent().ok_or(make_err!())?)?;
     std::fs::write(path, str)?;
     Ok(())
 }
