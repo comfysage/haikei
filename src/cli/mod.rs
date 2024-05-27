@@ -9,9 +9,9 @@ pub mod config;
 pub mod env;
 
 pub fn set(path: &str) -> Result<()> {
-    data::set_current_state(path)?;
     trace!("set wallpaper {path}");
     exec::set_wallpaper(&path)?;
+    data::set_current_state(path)?;
     Ok(())
 }
 pub fn random(dir: Option<String>) -> Result<()> {
