@@ -6,6 +6,8 @@ version = "0.1.0"
 edition = "2021"
 readme = "README.md"
 repository = "https://github.com/comfysage/haikei"
+homepage = "https://github.com/comfysage/haikei"
+description = "a tiny wallpaper helper"
 license = "MIT OR Apache-2.0"
 
 [[bin]]
