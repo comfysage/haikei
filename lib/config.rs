@@ -33,15 +33,15 @@ impl Config {
             .to_str()
             .ok_or(make_err!())?
             .to_string();
-        return Ok(path);
+        Ok(path)
     }
     pub fn new() -> Result<Self> {
         let path = Self::path()?;
-        if let Some(content) = std::fs::read_to_string(path).ok() {
+        if let Ok(content) = std::fs::read_to_string(path) {
             let config: Self = toml::from_str(&content).unwrap_or(Self::default());
             Ok(config)
         } else {
-            return Ok(Self::default());
+            Ok(Self::default())
         }
     }
     pub fn to_string(&self) -> Result<String> {

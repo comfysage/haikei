@@ -10,7 +10,7 @@ pub mod env;
 
 pub fn set(path: &str) -> Result<()> {
     trace!("set wallpaper {path}");
-    exec::set_wallpaper(&path)?;
+    exec::set_wallpaper(path)?;
     data::set_current_state(path)?;
     Ok(())
 }

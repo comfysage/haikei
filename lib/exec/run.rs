@@ -6,6 +6,7 @@ use std::process::{Command, Stdio};
 use std::thread;
 
 /// Pipe streams are blocking, we need separate threads to monitor them without blocking the primary thread.
+#[allow(clippy::unused_io_amount)]
 fn child_stream_to_vec<R>(mut stream: R) -> Result<()>
 where
     R: Read + Send + 'static,
