@@ -1,7 +1,7 @@
 use crate::prelude::*;
 
 use std::collections::HashMap;
-use std::io::{Read, stdout, Write, IoSlice};
+use std::io::{stdout, IoSlice, Read, Write};
 use std::process::{Command, Stdio};
 use std::thread;
 
@@ -25,7 +25,9 @@ where
                         break;
                     } else if got == 1 {
                         let value = buf[0];
-                        out.lock().write_vectored(&[IoSlice::new(&[value])]).unwrap();
+                        out.lock()
+                            .write_vectored(&[IoSlice::new(&[value])])
+                            .unwrap();
                     } else {
                         println!("{}] Unexpected number of bytes: {}", line!(), got);
                         break;

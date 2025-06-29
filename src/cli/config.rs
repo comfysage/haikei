@@ -1,7 +1,7 @@
-use haikei_lib::prelude::*;
-use haikei_lib::util::filepath;
 use haikei_lib::config::Config;
 use haikei_lib::data;
+use haikei_lib::prelude::*;
+use haikei_lib::util::filepath;
 
 pub fn create() -> Result<()> {
     let config_path = Config::path()?;

@@ -13,7 +13,7 @@ pub struct ConfigMain {
 impl Default for ConfigMain {
     fn default() -> Self {
         Self {
-            wallpapers: format!("{}/.wallpapers",&*constants::HOME),
+            wallpapers: format!("{}/.wallpapers", &*constants::HOME),
             provider: "swww".to_string(),
         }
     }

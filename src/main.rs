@@ -40,10 +40,7 @@ fn get_commands() -> Command {
                 .arg_required_else_help(false)
                 .arg(arg!([DIR] "use wallpaper dir")),
         )
-        .subcommand(
-            Command::new("daemon")
-                .about("start daemon"),
-        )
+        .subcommand(Command::new("daemon").about("start daemon"))
 }
 
 fn main() -> Result<()> {
@@ -75,8 +72,7 @@ fn main() -> Result<()> {
             Ok(())
         }
         Some(("random", sub_matches)) => {
-            let dir = sub_matches
-                .get_one::<String>("DIR");
+            let dir = sub_matches.get_one::<String>("DIR");
             cli::random(dir.cloned())?;
             Ok(())
         }

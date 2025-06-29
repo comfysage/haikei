@@ -1,5 +1,5 @@
-use crate::prelude::*;
 use crate::config::Config;
+use crate::prelude::*;
 
 enum Provider {
     SWWW,
@@ -26,7 +26,8 @@ impl Provider {
             Self::HSETROOT => "hsetroot -cover",
             Self::FEH => "feh --bg-fill",
             Self::Unknown(custom) => custom,
-        }.to_string()
+        }
+        .to_string()
     }
 }
 

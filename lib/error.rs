@@ -13,16 +13,16 @@ macro_rules! make_err {
 
 #[derive(Debug, Default)]
 pub enum Error {
-  NotFound(String),
-  Missing(String),
-  // io object already exists, multiple packages with similar names
-  Conflict(String),
-  IO(String),
-  Data(String),
-  Regex(String),
-  Parse(String),
-  #[default]
-  Unexpected,
+    NotFound(String),
+    Missing(String),
+    // io object already exists, multiple packages with similar names
+    Conflict(String),
+    IO(String),
+    Data(String),
+    Regex(String),
+    Parse(String),
+    #[default]
+    Unexpected,
 }
 
 impl fmt::Display for Error {
