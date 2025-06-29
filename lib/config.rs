@@ -8,6 +8,7 @@ use crate::util::constants;
 pub struct ConfigMain {
     pub wallpapers: String,
     pub provider: String,
+    pub fileformats: Vec<String>,
 }
 
 impl Default for ConfigMain {
@@ -15,6 +16,17 @@ impl Default for ConfigMain {
         Self {
             wallpapers: format!("{}/.wallpapers", &*constants::HOME),
             provider: "swww".to_string(),
+            fileformats: vec![
+                "jpg".to_string(),
+                "jpeg".to_string(),
+                "png".to_string(),
+                "gif".to_string(),
+                "pnm".to_string(),
+                "tga".to_string(),
+                "tiff".to_string(),
+                "webp".to_string(),
+                "bmp".to_string(),
+            ],
         }
     }
 }
