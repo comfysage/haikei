@@ -7,6 +7,7 @@ use haikei_lib::exec;
 use haikei_lib::prelude::*;
 
 use rand::seq::IteratorRandom;
+use walkdir::WalkDir;
 
 pub mod config;
 pub mod env;
@@ -24,9 +25,19 @@ pub fn random(dir: Option<String>) -> Result<()> {
     } else {
         cfg.main.wallpapers
     };
-    let item = std::fs::read_dir(&wall_dir)?
-        .flatten()
-        .filter(|item| item.file_type().map_or(false, |x| x.is_file()))
+    let item = WalkDir::new(&wall_dir)
+        .follow_links(true)
+        .into_iter()
+        .filter_entry(|entry| {
+            if !cfg.main.recurse && entry.depth() > 0 {
+                return false;
+            }
+            entry
+                .file_name()
+                .to_str()
+                .map_or(false, |x| !x.starts_with('.'))
+        })
+        .filter_map(|entry| entry.ok())
         .filter(|item| {
             cfg.main.fileformats.iter().any(|x| {
                 x == Path::new(&item.file_name())
