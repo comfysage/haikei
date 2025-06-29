@@ -5,11 +5,54 @@ use crate::project;
 use crate::util::constants;
 
 #[derive(Debug, Serialize, Deserialize)]
+pub struct ConfigProvider {
+    #[serde(default = "ConfigProvider::default_name")]
+    pub name: String,
+    #[serde(default = "ConfigProvider::default_args")]
+    pub args: Vec<String>,
+}
+
+impl ConfigProvider {
+    pub fn default_name() -> String {
+        "swww".to_string()
+    }
+    pub fn default_args() -> Vec<String> {
+        vec!["img".to_string()]
+    }
+}
+
+/// Examples:
+/// ```toml
+/// # swww
+/// [provider]
+/// name = "swww"
+/// args = ["img", "-t", "fade", "--transition-step", "250", "--transition-fps", "60"]
+/// # hsetroot
+/// [provider]
+/// name = "hsetroot"
+/// args = ["-cover"]
+/// # feh
+/// [provider]
+/// name = "feh"
+/// args = ["--bg-fill"]
+/// # custom
+/// [provider]
+/// name = "custom"
+/// args = ["-c", "custom", "--arg", "value"]
+/// ```
+impl Default for ConfigProvider {
+    fn default() -> Self {
+        Self {
+            name: Self::default_name(),
+            args: Self::default_args(),
+        }
+    }
+}
+
+#[derive(Debug, Serialize, Deserialize)]
 pub struct ConfigMain {
     #[serde(default = "ConfigMain::default_wallpapers")]
     pub wallpapers: String,
-    #[serde(default = "ConfigMain::default_provider")]
-    pub provider: String,
     #[serde(default = "ConfigMain::default_recurse")]
     pub recurse: bool,
     #[serde(default = "ConfigMain::default_fileformats")]
@@ -45,7 +88,6 @@ impl Default for ConfigMain {
     fn default() -> Self {
         Self {
             wallpapers: Self::default_wallpapers(),
-            provider: Self::default_provider(),
             recurse: Self::default_recurse(),
             fileformats: Self::default_fileformats(),
         }
@@ -56,6 +98,8 @@ impl Default for ConfigMain {
 pub struct Config {
     #[serde(default)]
     pub main: ConfigMain,
+    #[serde(default)]
+    pub provider: ConfigProvider,
 }
 
 impl Config {
