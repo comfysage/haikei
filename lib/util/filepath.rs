@@ -52,7 +52,7 @@ pub fn is_dir(path: &str) -> bool {
 }
 
 pub fn extend(path: &str) -> Result<String> {
-    if path.len() == 0 {
+    if path.is_empty() {
         return Err(make_err!(Missing, "path not long enough"));
     }
 

@@ -63,9 +63,6 @@ impl ConfigMain {
     pub fn default_wallpapers() -> String {
         format!("{}/.wallpapers", &*constants::HOME)
     }
-    pub fn default_provider() -> String {
-        "swww img".to_string()
-    }
     pub fn default_recurse() -> bool {
         true
     }

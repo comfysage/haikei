@@ -13,6 +13,8 @@ pub mod config;
 pub mod env;
 
 pub fn set(path: &str) -> Result<()> {
+    let path = Path::new(&path).canonicalize().map_err(|e| make_err!(IO, "could not canonicalize {path}: {e}"))?;
+    let path = path.to_str().ok_or(make_err!())?;
     trace!("set wallpaper {path}");
     exec::set_wallpaper(path)?;
     data::set_current_state(path)?;
@@ -25,6 +27,8 @@ pub fn random(dir: Option<String>) -> Result<()> {
     } else {
         cfg.main.wallpapers
     };
+    let wall_dir = Path::new(&wall_dir).canonicalize().map_err(|e| make_err!(IO, "could not canonicalize {wall_dir}: {e}"))?;
+    trace!("using dir {}", wall_dir.to_str().unwrap_or_default());
     let item = WalkDir::new(&wall_dir)
         .follow_links(true)
         .into_iter()
@@ -47,11 +51,8 @@ pub fn random(dir: Option<String>) -> Result<()> {
             })
         })
         .choose(&mut rand::thread_rng())
-        .ok_or(make_err!(
-            NotFound,
-            "could not match a wallpaper in dir {wall_dir}"
-        ))?;
-    let path = item.path();
+        .ok_or(make_err!(NotFound, "could not match a wallpaper in dir"))?;
+    let path = Path::join(&wall_dir, item.path());
     let path = path.to_str().ok_or(make_err!())?;
     debug!("select item {path}");
     set(path)?;
